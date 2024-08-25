@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<select id="selectList" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+				SELECT b.no, 
+						b.title, 
+				        b.content, 
+				        b.reg_date as regDate, 
+				        u.name as userName,
+				        b.hit
+				FROM board b 
+				JOIN users u ON b.user_no = u.no 
+			]]>
+	</select>
+
+	<select id="selectOne" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+				SELECT b.no, 
+						b.title, 
+				        b.content, 
+				        b.reg_date as regDate, 
+				        u.name as userName,
+				        b.hit
+				FROM board b 
+				JOIN users u ON b.user_no = u.no 
+				where b.no = #{no}
+			]]>
+	</select>
+
+</mapper>

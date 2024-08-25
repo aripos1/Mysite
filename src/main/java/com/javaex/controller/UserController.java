@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
+import ch.qos.logback.core.model.Model;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 
@@ -16,7 +19,7 @@ public class UserController {
 	private UserService userService;
 
 	// 회원가입폼
-	@RequestMapping(value = "/joinform", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "user/joinform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String joinform() {
 
 		System.out.println("joinform");
@@ -24,7 +27,7 @@ public class UserController {
 		return "user/joinForm";
 	}
 
-	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "user/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo uservo) {
 
 		System.out.println("join");
@@ -34,7 +37,7 @@ public class UserController {
 		return "user/joinOk";
 	}
 
-	@RequestMapping(value = "/joinok", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "user/joinok", method = { RequestMethod.GET, RequestMethod.POST })
 	public String joinok() {
 
 		System.out.println("joinok");
@@ -42,4 +45,42 @@ public class UserController {
 		return "user/joinOk";
 	}
 
+	/* 로그인폼 */
+	@RequestMapping(value = "/user/loginform", method = { RequestMethod.GET, RequestMethod.POST })
+	public String loginform() {
+		
+		return "user/loginForm";
+	}
+
+	/* 로그인 */
+	@RequestMapping(value = "/user/login", method = {RequestMethod.GET, RequestMethod.POST})
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController.login()");
+		
+		UserVo authUser = userService.exeLogin(userVo);
+		System.out.println("세션에서 'no'와 '이름'을 잘 가져왔나" + authUser);
+		
+		//로그인
+		session.setAttribute("authUser", authUser);
+		
+		//메인페이지로 리다이렉트
+		return "redirect:/main";
+	}
+
+	/* 로그아웃 */
+	@RequestMapping(value = "/user/logout", method = {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("UserController.logout()");
+		
+//		session.removeAttribute("authUser");
+		session.invalidate();
+		
+		return "redirect:/main";
+	}
+
+
+	
+	
+	
+	
 }

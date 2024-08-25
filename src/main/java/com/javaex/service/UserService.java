@@ -18,4 +18,23 @@ public class UserService {
 	return count;
 	}
 	
+	
+	/* 로그인 */
+	public UserVo exeLogin(UserVo userVo) {
+		
+		UserVo authUser = userDao.selectUser(userVo);
+		
+		System.out.println("UserService.exeLogin()");
+		System.out.println("로그인정보: " + userVo);
+		
+		return authUser;
+	}
+	
+	/* 회원정보수정 */
+	public UserVo exeModify(UserVo userVo) {
+		
+		userDao.updateUser(userVo);
+		
+		return userVo;
+	}
 }

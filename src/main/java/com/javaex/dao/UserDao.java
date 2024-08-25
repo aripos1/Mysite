@@ -1,12 +1,6 @@
 package com.javaex.dao;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,56 +13,6 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;	
 	
-	private Connection conn = null;
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
-
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/web_db";
-	private String id = "web";
-	private String pw = "web";
-
-	// 생성자
-	// 기본생성자 사용(그래서 생략)
-
-	// 메소드 gs
-	// 필드값을 외부에서 사용하면 안됨(그래서 생략)
-
-	// 메소드 일반
-	// DB연결 메소드
-	private void getConnection() {
-		try {
-			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName(driver);
-
-			// 2. Connection 얻어오기
-			conn = DriverManager.getConnection(url, id, pw);
-
-		} catch (ClassNotFoundException e) {
-			System.out.println("error: 드라이버 로딩 실패 - " + e);
-
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		}
-	}
-
-	// 자원정리 메소드
-	private void close() {
-		// 5. 자원정리
-		try {
-			if (rs != null) {
-				rs.close();
-			}
-			if (pstmt != null) {
-				pstmt.close();
-			}
-			if (conn != null) {
-				conn.close();
-			}
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		}
-	}
 
 
 	
@@ -80,6 +24,23 @@ public class UserDao {
 
 	}
 	
+	/* 로그인 */
+	public UserVo selectUser(UserVo userVo) {
+		
+		UserVo authUser = sqlSession.selectOne("user.selectByIdPw",userVo);
+		System.out.println(authUser + "이것은 디비가 다오에게 주는 거");
+		
+		return authUser;
+		
+	}
+	
+	/* 회원 정보 수정하기 */
+	public UserVo updateUser(UserVo userVo) {
+		
+		sqlSession.update("user.updateUser", userVo);
+		
+		return userVo;
+	}
 	
 	
 }

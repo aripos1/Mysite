@@ -3,11 +3,32 @@
 
 
 <mapper namespace="user">
- 	
-		<insert id="insert" parameterType="com.javaex.vo.UserVo">
+
+	<insert id="insert" parameterType="com.javaex.vo.UserVo">
 		<![CDATA[
-		insert into users
-		values(null, #{id}, #{password}, #{name}, #{gender})
+		insert into users (id, password, name, gender)
+		values(#{id}, #{password}, #{name}, #{gender})
 		]]>
 	</insert>
+
+	<select id="selectByIdPw" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+		select  no
+				,id
+				,name
+		from users
+		where id = #{id}
+		and password = #{password}
+		]]>
+	</select>
+	
+	<update id="updateUser">
+		<![CDATA[
+		update 	users set
+				name = #{name}
+				,password = #{password}
+				,gender = #{gender}
+		where id = #{id}
+		]]>
+	</update>
 </mapper>
