@@ -32,7 +32,7 @@ public class GuestbookController {
 
 		List<GuestVo> exeGuestList = guestbookService.exeGuestList();
 		model.addAttribute("guestList", exeGuestList);
-		guestbookService.exeGuestList();
+	
 
 		return "guestbook/addList";
 	}

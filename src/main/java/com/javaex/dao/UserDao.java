@@ -35,12 +35,20 @@ public class UserDao {
 	}
 	
 	/* 회원 정보 수정하기 */
-	public UserVo updateUser(UserVo userVo) {
+	public int updateUser(UserVo userVo) {
 		
-		sqlSession.update("user.updateUser", userVo);
+		int count = sqlSession.update("user.updateUser", userVo);
 		
-		return userVo;
+		return count;
 	}
 	
+	public UserVo modifyUserForm(UserVo authUser) {
+		System.out.println("modifyUser");
+		System.out.println(authUser);
+		UserVo modifyUserForm = sqlSession.selectOne("user.selectModify", authUser);
+		System.out.println( modifyUserForm);
+	
+	return modifyUserForm;
+	}
 	
 }

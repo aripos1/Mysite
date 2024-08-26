@@ -14,6 +14,7 @@
 <body>
 	<div id="wrap">
 
+		<!-- header -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<div id="container" class="clearfix">
@@ -44,29 +45,26 @@
 
 				<div id="user">
 					<div id="modifyForm">
-						<form action="${pageContext.request.contextPath}/user/modify" method="get">
+						<form action="${pageContext.request.contextPath}/user/modify" method="post">
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <span class="text-large bold">${sessionScope.authUser.id}</span>
+								<label class="form-text" for="input-uid">아이디</label> <span class="text-large bold">${ModifyUser.id}</span>
 							</div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">패스워드</label> <input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
+								<label class="form-text" for="input-pass">패스워드</label> <input type="text" id="input-pass" name="password" value="" placeholder="${ModifyUser.password}">
 							</div>
 
 							<!-- 이메일 -->
 							<div class="form-group">
-								<label class="form-text" for="input-name">이름</label> <input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
+								<label class="form-text" for="input-name">이름</label> <input type="text" id="input-name" name="name" value="" placeholder="${ModifyUser.name}">
 							</div>
 
 							<!-- //나이 -->
 							<div class="form-group">
-								<span class="form-text">성별</span> 
-								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="gender" value="male"> 
-								<label for="rdo-female">여</label>
+								<span class="form-text">성별</span> <label for="rdo-male">남</label> <input type="radio" id="rdo-male" name="gender" value="male"> <label for="rdo-female">여</label>
 								<input type="radio" id="rdo-female" name="gender" value="female">
 
 							</div>
@@ -78,6 +76,7 @@
 
 						</form>
 
+
 					</div>
 					<!-- //modifyForm -->
 				</div>
@@ -88,7 +87,7 @@
 		</div>
 		<!-- //container  -->
 
-		<!-- footer -->
+
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //footer -->
 

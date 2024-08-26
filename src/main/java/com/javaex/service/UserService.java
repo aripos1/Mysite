@@ -11,30 +11,36 @@ public class UserService {
 
 	@Autowired
 	private UserDao userDao;
-	
-	
+
 	public int exeInsert(UserVo userVo) {
 		int count = userDao.insertUser(userVo);
-	return count;
+		return count;
 	}
-	
-	
+
 	/* 로그인 */
 	public UserVo exeLogin(UserVo userVo) {
-		
+
 		UserVo authUser = userDao.selectUser(userVo);
-		
+
 		System.out.println("UserService.exeLogin()");
 		System.out.println("로그인정보: " + userVo);
-		
+
 		return authUser;
 	}
-	
+
 	/* 회원정보수정 */
-	public UserVo exeModify(UserVo userVo) {
-		
-		userDao.updateUser(userVo);
-		
-		return userVo;
+	public int exeModify(UserVo userVo) {
+
+		int count = userDao.updateUser(userVo);
+
+		return count;
+	}
+
+	public UserVo exeModifyForm(UserVo authUser) {
+		System.out.println("exeModifyForm");
+		UserVo modifyUserForm = userDao.modifyUserForm(authUser);
+		System.out.println(modifyUserForm);
+
+		return modifyUserForm;
 	}
 }

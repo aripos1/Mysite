@@ -73,7 +73,7 @@
 							<!-- //나이 -->
 							<div class="form-group">
 								<span class="form-text">성별</span> <label for="rdo-male">남</label>
-								<input type="radio" id="rdo-male" name="gender" value="mail">
+								<input type="radio" id="rdo-male" name="gender" value="male">
 								<label for="rdo-female">여</label> <input type="radio"
 									id="rdo-female" name="gender" value="female">
 
