@@ -34,8 +34,8 @@ public class BoardController {
 
 		System.out.println("boardList");
 
-		List<BoardVo> exeBoardList = boardService.exeBoardList();
-		model.addAttribute("boardList", exeBoardList);
+		List<BoardVo> boardList = boardService.exeBoardList();
+		model.addAttribute("boardList", boardList);
 		boardService.exeBoardList();
 
 		return "board/list";
