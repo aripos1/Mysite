@@ -1,7 +1,5 @@
 package com.javaex.vo;
 
-import java.time.LocalDateTime;
-
 public class BoardVo {
 
 	private int no;
@@ -12,12 +10,12 @@ public class BoardVo {
 	private int userNo;
 	private String userName;
 
-
 	public BoardVo() {
 		super();
 	}
 
-	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo ) {
+
+	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -27,7 +25,7 @@ public class BoardVo {
 		this.userNo = userNo;
 
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -35,7 +33,6 @@ public class BoardVo {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 
 	public int getNo() {
 		return no;

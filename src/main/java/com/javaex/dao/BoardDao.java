@@ -23,10 +23,10 @@ public class BoardDao {
 		return boardList;
 
 	}
-	
-	public BoardVo getBoardOne(BoardVo boardVo ) {
 
-		BoardVo boardOne = sqlSession.selectOne("board.selectOne",boardVo);
+	public BoardVo getBoardOne(BoardVo boardVo) {
+
+		BoardVo boardOne = sqlSession.selectOne("board.selectOne", boardVo);
 		System.out.println(boardOne);
 		return boardOne;
 

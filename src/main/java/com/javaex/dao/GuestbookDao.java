@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.GuestVo;
+import com.javaex.vo.UserVo;
 
 @Repository
 public class GuestbookDao {
@@ -19,8 +20,8 @@ public class GuestbookDao {
 
 	public boolean deleteGuest(int no, String password) {
 		System.out.println("delete 요청111");
-		GuestVo guest = new GuestVo(no, password);
-		int isDeleted = sqlSession.delete("guestbook.delete", guest);
+		GuestVo guestVo = new GuestVo(no, password);
+		int isDeleted = sqlSession.delete("guestbook.delete", guestVo);
 		return isDeleted > 0;
 
 	}

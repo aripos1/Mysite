@@ -23,9 +23,9 @@ public class BoardService {
 
 	public BoardVo exeBoardOne(BoardVo boardVo) {
 
-		BoardVo BoardOne = boardDao.getBoardOne(boardVo);
+		BoardVo boardOne = boardDao.getBoardOne(boardVo);
 
-		return BoardOne;
+		return boardOne;
 	}
 
 }

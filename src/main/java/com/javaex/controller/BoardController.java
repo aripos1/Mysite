@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
 
@@ -17,8 +18,8 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class BoardController {
 
-	@Autowired
-	private BoardService boardService;
+    @Autowired
+    private BoardService boardService;
 	// 필드
 
 	// 생성자
@@ -41,18 +42,15 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/read", method = { RequestMethod.GET, RequestMethod.POST })
-	public String boardRead(@ModelAttribute BoardVo boardVo, HttpSession session ) {
+	public String boardRead(@ModelAttribute BoardVo boardVo, HttpSession session) {
 		System.out.println("UserController.login()");
-		
+
 		BoardVo boardOne = boardService.exeBoardOne(boardVo);
-		System.out.println("세션에서 'no'와 '이름'을 잘 가져왔나" + boardOne);
-		
-		//로그인
+		System.out.println(boardOne);
+
+		// 로그인
 		session.setAttribute("boardOne", boardOne);
-		
-		
-		
-		
+
 		return "board/read";
 	}
 }

@@ -36,9 +36,9 @@ public class UserService {
 		return count;
 	}
 
-	public UserVo exeModifyForm(UserVo authUser) {
+	public UserVo exeModifyForm(int no) {
 		System.out.println("exeModifyForm");
-		UserVo modifyUserForm = userDao.modifyUserForm(authUser);
+		UserVo modifyUserForm = userDao.modifyUserForm(no);
 		System.out.println(modifyUserForm);
 
 		return modifyUserForm;

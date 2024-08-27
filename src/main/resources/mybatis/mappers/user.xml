@@ -32,7 +32,7 @@
 		]]>
 	</update>
 
-	<select id="selectModify" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+	<select id="selectModify" parameterType="int" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select no
 				,id

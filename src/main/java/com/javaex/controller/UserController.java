@@ -82,13 +82,19 @@ public class UserController {
 	public String modifyform(@ModelAttribute UserVo userVo, HttpSession session, Model model) {
 		System.out.println("modifyform");
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		int no = authUser.getNo();
+		
+		UserVo modifyUser = userService.exeModifyForm(no);
+		
+		model.addAttribute("ModifyUser", modifyUser);
+		/*
 		System.out.println(authUser);
 		session.setAttribute("ModifyUser", authUser);
 		UserVo modifyUser = userService.exeModifyForm(authUser);
 		System.out.println("ModifyUser " + modifyUser);
 		model.addAttribute("ModifyUser", modifyUser);
-
+		*/
 		return "user/modifyForm";
 	}
 
@@ -100,7 +106,7 @@ public class UserController {
 		// userVo name pw gender no(X)
 
 		// 세션의 no 가져오기
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		int no = authUser.getNo();
 		System.out.println(no);
 		// userVo + no
