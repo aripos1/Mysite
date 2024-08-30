@@ -1,5 +1,6 @@
 package com.javaex.dao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,5 +32,28 @@ public class BoardDao {
 		return boardOne;
 
 	}
+	
+	public int getInsert(BoardVo boardVo) {
+		
+		if (boardVo.getRegDate() == null) {
+			boardVo.setRegDate(LocalDateTime.now());
+		}
+		int count = sqlSession.insert("board.insert",boardVo);
+		System.out.println(count);
+		return count;
+	}
 
+	public int getDelete(BoardVo boardVo) {
+		
+		int count = sqlSession.delete("board.delete",boardVo);
+		System.out.println(count);
+		return count;
+	}
+	
+	public int getUpdate(BoardVo boardVo) {
+		
+		int count = sqlSession.update("board.update",boardVo);
+		System.out.println(count);
+		return count;
+	}
 }

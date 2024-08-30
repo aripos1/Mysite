@@ -1,15 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/assets/css/mysite.css"
-	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/board.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -45,38 +42,43 @@
 				</div>
 				<!-- //content-head -->
 
-				<div id="board">
-					<div id="read">
-						<form action="#" method="get">
-							<!-- 작성자 -->
-							<div class="form-group">
-								<span class="form-text">작성자</span> <span class="form-value">${sessionScope.boardOne.userName}</span>
-							</div>
+		<div id="board">
+    <div id="read">
+        <form action="#" method="get">
+            <!-- 작성자 -->
+            <div class="form-group">
+                <span class="form-text">작성자</span> <span class="form-value">${BoardVo.userName}</span>
+            </div>
 
-							<!-- 조회수 -->
-							<div class="form-group">
-								<span class="form-text">조회수</span> <span class="form-value">${sessionScope.boardOne.hit}</span>
-							</div>
+            <!-- 조회수 -->
+            <div class="form-group">
+                <span class="form-text">조회수</span> <span class="form-value">${BoardVo.hit}</span>
+            </div>
 
-							<!-- 작성일 -->
-							<div class="form-group">
-								<span class="form-text">작성일</span> <span class="form-value">${sessionScope.boardOne.regDate}</span>
-							</div>
+            <!-- 작성일 -->
+            <div class="form-group">
+                <span class="form-text">작성일</span> <span class="form-value">${BoardVo.regDate}</span>
+            </div>
 
-							<!-- 제목 -->
-							<div class="form-group">
-								<span class="form-text">제 목</span> <span class="form-value">${sessionScope.boardOne.title}</span>
-							</div>
+            <!-- 제목 -->
+            <div class="form-group">
+                <span class="form-text">제 목</span> <span class="form-value">${BoardVo.title}</span>
+            </div>
 
-							<!-- 내용 -->
-							<div id="txt-content">
-								<span class="form-value">
-									${sessionScope.boardOne.content} </span>
-							</div>
+            <!-- 내용 -->
+            <div id="txt-content">
+                <span class="form-value">${BoardVo.content}</span>
+            </div>
 
-							<a id="btn_modify" href="">수정</a> <a id="btn_modify" href="">목록</a>
+            <!-- 수정 버튼 (작성자에게만 보임) -->
+            <c:if test="${sessionScope.authUser != null && sessionScope.authUser.no == BoardVo.userNo}">
+                <a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyform?no=${BoardVo.no}">수정</a>
+            </c:if>
+            
+            <!-- 목록 버튼 -->
+            <a id="btn_list" href="${pageContext.request.contextPath}/board/list">목록</a>
 
-						</form>
+        </form>
 						<!-- //form -->
 					</div>
 					<!-- //read -->

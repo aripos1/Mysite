@@ -80,7 +80,7 @@
 							<tr>
 								<td>${guestVo.no}</td>
 								<td>${guestVo.name}</td>
-								<td>${guestVo.date}</td>
+								<td>${guestVo.regDate}</td>
 								<td><a href="${pageContext.request.contextPath}/guestbook/deleteform?no=${guestVo.no}">삭제</a></td>
 							</tr>
 							<tr>

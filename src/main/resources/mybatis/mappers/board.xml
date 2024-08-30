@@ -11,7 +11,8 @@
 				        b.content, 
 				        b.reg_date as regDate, 
 				        u.name as userName,
-				        b.hit
+				        b.hit,
+				        u.no as userNo
 				FROM board b 
 				JOIN users u ON b.user_no = u.no 
 			]]>
@@ -24,11 +25,40 @@
 				        b.content, 
 				        b.reg_date as regDate, 
 				        u.name as userName,
-				        b.hit
+				        b.hit,
+				        u.no as userNo
 				FROM board b 
 				JOIN users u ON b.user_no = u.no 
 				where b.no = #{no}
 			]]>
 	</select>
+	<insert id="insert" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+		insert into board
+		values(null, #{title}, #{content}, 0, #{regDate}, #{no})
+		]]>
+	</insert>
+
+	<delete id="delete" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+		    DELETE b
+		    FROM board b 
+		    JOIN users u ON b.user_no = u.no 
+		    WHERE b.no = #{no} 
+		    AND u.no = #{userNo}
+		]]>
+	</delete>
+	<update id="update" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+		    update b set
+		    	b.title = #{title}
+		    	b.content = #{content}
+		    FROM board b 
+		    JOIN users u ON b.user_no = u.no 
+		    WHERE b.no = #{no} 
+		    AND u.no = #{userNo}
+		]]>
+	</update>
+
 
 </mapper>

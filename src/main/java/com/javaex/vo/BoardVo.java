@@ -1,12 +1,14 @@
 package com.javaex.vo;
 
+import java.time.LocalDateTime;
+
 public class BoardVo {
 
 	private int no;
 	private String title;
 	private String content;
 	private int hit;
-	private String regDate;
+	private LocalDateTime regDate;
 	private int userNo;
 	private String userName;
 
@@ -15,7 +17,7 @@ public class BoardVo {
 	}
 
 
-	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo) {
+	public BoardVo(int no, String title, String content, int hit, LocalDateTime regDate, int userNo) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -66,13 +68,17 @@ public class BoardVo {
 		this.hit = hit;
 	}
 
-	public String getRegDate() {
+
+
+	public LocalDateTime getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(String regDate) {
+
+	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
+
 
 	public int getUserNo() {
 		return userNo;

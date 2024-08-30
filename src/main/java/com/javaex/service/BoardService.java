@@ -27,5 +27,24 @@ public class BoardService {
 
 		return boardOne;
 	}
+	
+	public int exeInsert(BoardVo boardVo) {
 
+		int count = boardDao.getInsert(boardVo);
+
+		return count;
+	}
+
+	public int exeDelete(BoardVo boardVo) {
+
+		int count = boardDao.getDelete(boardVo);
+
+		return count;
+	}
+	public int exeUpdate(BoardVo boardVo) {
+
+		int count = boardDao.getUpdate(boardVo);
+
+		return count;
+	}
 }

@@ -69,4 +69,12 @@ public class GuestbookController {
 		}
 
 	}
+	@RequestMapping(value = "/guestbook/ajaxindex", method = { RequestMethod.GET, RequestMethod.POST })
+	public String ajaxindex() {
+		
+		System.out.println("ajaxindex");
+			
+		
+		return "/guestbook/ajaxindex";
+	}
 }

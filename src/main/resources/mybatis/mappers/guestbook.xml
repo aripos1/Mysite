@@ -7,9 +7,10 @@
 	<select id="selectList" resultType="com.javaex.vo.GuestVo">
 		<![CDATA[
  			select no,
+			password,
 			name,
 			content, 
-			reg_date as date
+			reg_date as regDate
 			from guestbook
 			]]>
 	</select>

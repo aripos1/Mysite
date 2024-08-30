@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -7,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/assets/css/mysite.css"
-	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/board.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -71,14 +68,14 @@
 								<tbody>
 									<tr>
 										<td>${boardVo.no}</td>
-										<td class="text-left"><a
-											href="${pageContext.request.contextPath}/board/read?no=${boardVo.no}">${boardVo.title}</a></td>
+										<td class="text-left"><a href="${pageContext.request.contextPath}/board/read?no=${boardVo.no}">${boardVo.title}</a></td>
 										<td>${boardVo.userName}</td>
 										<td>${boardVo.hit}</td>
 										<td>${boardVo.regDate}</td>
-										<td><a href="">[삭제]</a></td>
+										 <c:if test="${sessionScope.authUser != null && sessionScope.authUser.no == boardVo.userNo}">
+											<td><a href="${pageContext.request.contextPath}/board/delete?no=${boardVo.no}">[삭제]</a></td>
+										</c:if>
 									</tr>
-
 								</tbody>
 							</c:forEach>
 						</table>
@@ -102,7 +99,10 @@
 
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="">글쓰기</a>
+
+						<c:if test="${sessionScope.authUser != null}">
+							<a id="btn_write" href="${pageContext.request.contextPath}/board/writeform">글쓰기</a>
+						</c:if>
 
 					</div>
 					<!-- //list -->
