@@ -38,9 +38,19 @@ public class GuestbookService {
 
 	public boolean exeDelete(int no, String password) {
 		
-		boolean isDeleted = guestbookDao.deleteGuest(no, password );
+		boolean isDeleted = guestbookDao.deleteGuest(no, password);
 
 		return isDeleted;
 	}
 
+	public GuestVo exeSelectKey(GuestVo guestVo) {
+
+		int count = guestbookDao.insertSelectKey(guestVo);
+		
+		GuestVo gVo  = guestbookDao.selectOneGuest(guestVo.getNo());
+
+		return gVo;
+	}	
+	
+	
 }

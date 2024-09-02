@@ -18,15 +18,25 @@
 	<insert id="insert" parameterType="com.javaex.vo.GuestVo">
 		<![CDATA[
 		 	INSERT INTO guestbook (no, name, password, content, reg_date)
-			values(null, #{name} , #{password} , #{content}, #{regDate})
+			values(null, #{name} , #{password} , #{content}, now())
 		]]>
 	</insert>
 
-	<select id="selectOne" parameterType="int"
-		resultType="com.javaex.vo.GuestVo">
+	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.GuestVo">
 		<![CDATA[
 			select no,
 				password
+			from guestbook
+			where no = #{no}
+		]]>
+	</select>
+	
+		<select id="selectOneGuest" parameterType="int" resultType="com.javaex.vo.GuestVo">
+		<![CDATA[
+			select no,
+					name,
+					content,
+					reg_date as regDate
 			from guestbook
 			where no = #{no}
 		]]>
@@ -39,6 +49,20 @@
 			AND password = #{password}
 		]]>
 	</delete>
+	
+	<insert id="insertSelectKey" parameterType="com.javaex.vo.GuestVo">
+		<![CDATA[
+		 	INSERT INTO guestbook
+			values(null, #{name} , #{password} , #{content}, now())
+		]]>
+		<selectKey keyProperty="no" resultType="int" order="AFTER">
+		<![CDATA[
+			select last_insert_id(); 
+	
+		]]>
+		</selectKey>
+		
+	</insert>
 
 
 </mapper>

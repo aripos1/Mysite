@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.GuestVo;
-import com.javaex.vo.UserVo;
 
 @Repository
 public class GuestbookDao {
@@ -16,7 +15,6 @@ public class GuestbookDao {
 	private SqlSession sqlSession;
 	// 필드
 	// 필드
-	
 
 	public boolean deleteGuest(int no, String password) {
 		System.out.println("delete 요청111");
@@ -46,6 +44,24 @@ public class GuestbookDao {
 
 		return count;
 	}
+
+	public int insertSelectKey(GuestVo guestVo) {
+
+		int count = sqlSession.insert("guestbook.insertSelectKey", guestVo);
+
+		System.out.println("dao" + guestVo);
+		return count;
+	}
+	
+	public GuestVo selectOneGuest(int no) {
+
+		GuestVo guestVo= sqlSession.selectOne("guestbook.selectOneGuest", no);
+
+		System.out.println("dao" + guestVo);
+		return guestVo;
+	}
+	
+	
 
 	// 리스트 불러오기
 

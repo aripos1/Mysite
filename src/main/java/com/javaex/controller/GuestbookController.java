@@ -74,7 +74,6 @@ public class GuestbookController {
 		
 		System.out.println("ajaxindex");
 			
-		
 		return "/guestbook/ajaxindex";
 	}
 }
