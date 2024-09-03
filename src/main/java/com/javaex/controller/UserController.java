@@ -2,13 +2,15 @@ package com.javaex.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
-import org.springframework.ui.Model;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -122,4 +124,12 @@ public class UserController {
 		return "redirect:/main";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "api/user/duplicate", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean duplicate(@RequestParam(value="id") String id) {
+		System.out.println("UserController.idCheck()");
+		boolean can = userService.exeDuplicate(id);
+		System.out.println(id);
+		return can;
+	}
 }

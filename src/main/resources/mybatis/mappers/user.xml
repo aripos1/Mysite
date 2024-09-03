@@ -42,4 +42,12 @@
 			where no = #{no}
 		]]>
 	</select>
+	
+	<select id="selectById" parameterType="string"  resultType="int">
+		<![CDATA[
+			select count(*)
+			from users
+			where id = #{id}
+		]]>
+	</select>
 </mapper>

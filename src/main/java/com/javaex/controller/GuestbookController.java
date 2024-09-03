@@ -76,4 +76,6 @@ public class GuestbookController {
 			
 		return "/guestbook/ajaxindex";
 	}
+	
+	
 }
